@@ -6,7 +6,7 @@ from telegram.ext import (
     ApplicationBuilder, CommandHandler, ContextTypes
 )
 
-TOKEN = "your_real_bot_token_here"
+TOKEN = "8198937260:AAFC0sN8QWDLXmFoA6IzXIke90PTBWZ1cXw"
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
