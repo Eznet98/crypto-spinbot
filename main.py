@@ -26,7 +26,7 @@ def get_or_create_user(user_id):
 from telegram import KeyboardButton, ReplyKeyboardMarkup, Update
 from telegram.ext import ContextTypes
 
-WEBAPP_URL = "https://crypto-spinbot.netlify.app"  # ✅ Your Netlify spinwheel link
+WEBAPP_URL = "https://crypto-spinbot.netlify.app/"  # ✅ Your Netlify spinwheel link
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = get_or_create_user(update.effective_user.id)
