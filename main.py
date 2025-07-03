@@ -23,9 +23,33 @@ def get_or_create_user(user_id):
         users[user_id] = {"balance": 1000, "streak": 0, "referrals": 0, "name": f"User{user_id}"}
     return users[user_id]
 
+from telegram import KeyboardButton, ReplyKeyboardMarkup, Update
+from telegram.ext import ContextTypes
+
+WEBAPP_URL = "https://crypto-spinbot.netlify.app"  # ✅ Your Netlify spinwheel link
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = get_or_create_user(update.effective_user.id)
-    await update.message.reply_text(f"🎉 Welcome {update.effective_user.first_name}! Your balance: {user['balance']} coins.\nUse /spin to play!")
+
+    welcome_msg = (
+        f"🎉 Welcome {update.effective_user.first_name}! "
+        f"Your balance: {user['balance']} coins.\n\n"
+        f"Use /spin to play text version.\n"
+        f"Or tap below to launch the 🎰 visual casino:"
+    )
+
+    # Web App button that opens your Mini App inside Telegram
+    button = KeyboardButton(
+        text="🎰 Launch Casino",
+        web_app={"url": WEBAPP_URL}
+    )
+
+    reply_markup = ReplyKeyboardMarkup(
+        [[button]],
+        resize_keyboard=True
+    )
+
+    await update.message.reply_text(welcome_msg, reply_markup=reply_markup)
 
 async def spin(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
