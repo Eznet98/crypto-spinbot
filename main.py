@@ -6,10 +6,11 @@ from telegram import (
     ReplyKeyboardMarkup,
     WebAppInfo
 )
-from telegram.ext import (
-    ApplicationBuilder,
-    CommandHandler,
-    ContextTypes
+from telegram.ext import Application
+application = Application.builder().token(TOKEN).build()
+# ... add handlers ...
+application.run_polling()
+
 )
 
 TOKEN = "8198937260:AAFC0sN8QWDLXmFoA6IzXIke90PTBWZ1cXw"
